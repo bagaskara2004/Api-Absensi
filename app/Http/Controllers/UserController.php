@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Http\Resources\UserResource;
+use App\Models\Absensi;
+use App\Models\Permintaan_Cuti;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
@@ -79,6 +81,8 @@ class UserController extends Controller
     public function destroy(User $user)
     {
         $user->delete();
+        Absensi::where('nip',$user->nip)->delete();
+        Permintaan_Cuti::where('nip',$user->nip)->delete();
         return new UserResource($user);
     }
 
