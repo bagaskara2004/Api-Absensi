@@ -39,7 +39,7 @@ class PermintaanCutiController extends Controller
         $user = User::where('nip', $request->nip)->first();
 
         if (!$user) {
-            return response()->json(['message' => 'User tidak ditemukan'], 409);
+            return response()->json(['message' => 'User tidak ditemukan'], 404);
         }
 
         $cuti = Permintaan_Cuti::create([
